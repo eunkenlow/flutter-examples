@@ -1,8 +1,10 @@
 import 'package:scoped_model/scoped_model.dart';
 import 'package:scoped_model_example/models/models.dart';
-import 'package:scoped_model_example/api.dart';
+import 'package:scoped_model_example/repository/repository.dart';
 
 class WeatherModel extends Model {
+  final _weatherRepository = WeatherRepository();
+
   bool _isLoading = false;
   String _errorMessage = '';
   Weather _weather = Weather.empty();
@@ -16,7 +18,7 @@ class WeatherModel extends Model {
       _isLoading = true;
       notifyListeners();
 
-      final Weather weather = await getWeather();
+      final Weather weather = await _weatherRepository.getWeather();
       _weather = weather;
       _isLoading = false;
       notifyListeners();
@@ -29,7 +31,7 @@ class WeatherModel extends Model {
 
   Future refreshWeather() async {
     try {
-      final Weather weather = await getWeather();
+      final Weather weather = await _weatherRepository.getWeather();
       _weather = weather;
       notifyListeners();
     } catch (err) {
