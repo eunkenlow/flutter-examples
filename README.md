@@ -14,8 +14,8 @@
 - [x] Mobx
   - State management using mobx.
   - Snackbar to display errors.
-- [] Bloc
-- [] Redux 
+- [ ] Bloc
+- [ ] Redux 
 
 ## Getting Started
   - For mobx example, run `flutter packages pub run build_runner build` to auto generate files for mobx.
